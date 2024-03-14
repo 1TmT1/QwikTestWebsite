@@ -1,6 +1,6 @@
 import { component$, useSignal, useTask$ } from "@builder.io/qwik";
-import { Link, routeLoader$ } from "@builder.io/qwik-city";
-import { RequestEvent, DocumentHead, useNavigate } from "@builder.io/qwik-city";
+import { Link, routeLoader$, useNavigate } from "@builder.io/qwik-city";
+import type { RequestEvent, DocumentHead } from "@builder.io/qwik-city";
 import { getUserProfile } from "~/utils/helpers";
 
 interface SessionData {
@@ -13,7 +13,7 @@ export const onGet = async({ sharedMap, redirect, cookie }: RequestEvent) => {
     
     const profile = await getUserProfile(cookie);
     
-    if (profile.role !== "free") {
+    if (profile.role != "free") {
         throw redirect(302, "/login");
     }
 
